@@ -68,11 +68,11 @@ const postStore = usePostStore()
 
 // SEO
 useHead({
-  title: '전체 포스트 - Polar Blog',
+  title: '전체 포스트 - Simpolor Blog',
   meta: [
     {
       name: 'description',
-      content: 'Polar Blog의 모든 포스트를 확인하세요. 개발 관련 다양한 주제의 글들을 찾아볼 수 있습니다.'
+      content: 'Simpolor Blog의 모든 포스트를 확인하세요. 개발 관련 다양한 주제의 글들을 찾아볼 수 있습니다.'
     },
     {
       name: 'keywords',
@@ -80,11 +80,11 @@ useHead({
     },
     {
       property: 'og:title',
-      content: '전체 포스트 - Polar Blog'
+      content: '전체 포스트 - Simpolor Blog'
     },
     {
       property: 'og:description',
-      content: 'Polar Blog의 모든 포스트를 확인하세요.'
+      content: 'Simpolor Blog의 모든 포스트를 확인하세요.'
     },
     {
       property: 'og:type',
@@ -92,11 +92,11 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: '전체 포스트 - Polar Blog'
+      content: '전체 포스트 - Simpolor Blog'
     },
     {
       name: 'twitter:description',
-      content: 'Polar Blog의 모든 포스트를 확인하세요.'
+      content: 'Simpolor Blog의 모든 포스트를 확인하세요.'
     }
   ]
 })

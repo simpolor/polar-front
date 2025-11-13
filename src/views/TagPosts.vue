@@ -74,8 +74,8 @@ const router = useRouter()
 const pagination = usePagination(10)
 
 // SEO
-const seoTitle = computed(() => `#${props.tagName} 태그 - Polar Blog`)
-const seoDescription = computed(() => `${props.tagName} 태그가 포함된 포스트 목록입니다. Polar Blog에서 ${props.tagName} 관련 글을 찾아보세요.`)
+const seoTitle = computed(() => `#${props.tagName} 태그 - Simpolor Blog`)
+const seoDescription = computed(() => `${props.tagName} 태그가 포함된 포스트 목록입니다. Simpolor Blog에서 ${props.tagName} 관련 글을 찾아보세요.`)
 
 useHead({
   title: seoTitle,

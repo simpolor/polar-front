@@ -3,7 +3,7 @@
     <!-- 히어로 섹션 -->
     <section class="text-center py-12 md:py-20">
       <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-        Polar Blog
+        Simpolor Blog
       </h1>
       <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
         개발 지식과 경험을 공유하는 공간
@@ -76,7 +76,7 @@ const postStore = usePostStore()
 
 // SEO
 useHead({
-  title: 'Polar Blog - 개발 지식과 경험을 공유하는 공간',
+  title: 'Simpolor Blog - 개발 지식과 경험을 공유하는 공간',
   meta: [
     {
       name: 'description',
@@ -88,7 +88,7 @@ useHead({
     },
     {
       property: 'og:title',
-      content: 'Polar Blog - 개발 지식과 경험을 공유하는 공간'
+      content: 'Simpolor Blog - 개발 지식과 경험을 공유하는 공간'
     },
     {
       property: 'og:description',
@@ -100,7 +100,7 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: 'Polar Blog - 개발 지식과 경험을 공유하는 공간'
+      content: 'Simpolor Blog - 개발 지식과 경험을 공유하는 공간'
     },
     {
       name: 'twitter:description',

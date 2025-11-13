@@ -1,4 +1,4 @@
-# robots.txt for Polar Blog
+# robots.txt for Simpolor Blog
 
 User-agent: *
 Allow: /

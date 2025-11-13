@@ -4,7 +4,7 @@
     <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg">
       <div class="p-6">
         <router-link to="/" class="text-2xl font-bold text-gray-800 dark:text-white">
-          Polar Admin
+          Simpolor Admin
         </router-link>
       </div>
 

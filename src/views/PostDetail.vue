@@ -116,7 +116,7 @@ const loading = computed(() => postStore.loading)
 const error = computed(() => postStore.error)
 
 // SEO - 포스트 데이터를 기반으로 동적 메타 태그 생성
-const seoTitle = computed(() => post.value ? `${post.value.title} - Polar Blog` : 'Polar Blog')
+const seoTitle = computed(() => post.value ? `${post.value.title} - Simpolor Blog` : 'Simpolor Blog')
 const seoDescription = computed(() => post.value?.description || '개발 관련 지식과 경험을 공유하는 기술 블로그입니다.')
 const seoKeywords = computed(() => {
   if (!post.value) return '개발, 프로그래밍, 블로그'
@@ -124,7 +124,7 @@ const seoKeywords = computed(() => {
   return `${post.value.keywords}, ${tags}`
 })
 const seoImage = computed(() => post.value?.cover_file?.image_url || '')
-const seoAuthor = computed(() => post.value?.author || 'Polar Blog')
+const seoAuthor = computed(() => post.value?.author || 'Simpolor Blog')
 
 useHead({
   title: seoTitle,

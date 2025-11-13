@@ -4,7 +4,7 @@
       <nav class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <router-link to="/" class="text-2xl font-bold text-gray-800 dark:text-white">
-            Polar Blog
+            Simpolor Blog
           </router-link>
 
           <div class="flex items-center gap-6">
@@ -44,7 +44,7 @@
 
     <footer class="bg-gray-100 dark:bg-gray-800 py-8">
       <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
-        <p>&copy; 2024 Polar Blog. All rights reserved.</p>
+        <p>&copy; 2024 Simpolor Blog. All rights reserved.</p>
       </div>
     </footer>
   </div>

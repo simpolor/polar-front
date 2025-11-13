@@ -4,7 +4,7 @@
       <!-- 로고 / 타이틀 -->
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          Polar Blog
+          Simpolor Blog
         </h1>
         <p class="text-gray-600 dark:text-gray-400">
           관리자 로그인
