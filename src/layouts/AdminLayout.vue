@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 import { useUIStore } from '@/stores/ui.store'
 
@@ -94,4 +94,11 @@ const toggleDarkMode = () => {
 const handleLogout = () => {
   logout()
 }
+
+// 어드민 페이지는 기본적으로 화이트 테마 사용
+onMounted(() => {
+  if (uiStore.darkMode) {
+    uiStore.toggleDarkMode()
+  }
+})
 </script>

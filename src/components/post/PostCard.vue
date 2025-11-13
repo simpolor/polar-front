@@ -3,7 +3,7 @@
     <!-- 커버 이미지 -->
     <div v-if="post.cover_file" class="mb-4 -mx-6 -mt-6 overflow-hidden rounded-t-lg">
       <img
-        :src="post.cover_file.file_url"
+        :src="post.cover_file.image_url"
         :alt="post.title"
         class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
       />

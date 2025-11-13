@@ -93,6 +93,21 @@
           />
         </div>
 
+        <!-- 커버 이미지 -->
+        <div class="card">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            커버 이미지
+          </label>
+          <ImageUpload
+            v-model="coverFile"
+            @update:fileId="formData.cover_file_id = $event"
+            image-alt="포스트 커버 이미지"
+          />
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            포스트 목록과 상세 페이지에 표시될 커버 이미지입니다.
+          </p>
+        </div>
+
         <!-- 본문 -->
         <div class="card">
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -173,7 +188,9 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAdminStore } from '@/stores/admin.store'
 import type { PostRequest } from '@/types/post.types'
+import type { FileInfo } from '@/types/common.types'
 import MarkdownEditor from '@/components/admin/MarkdownEditor.vue'
+import ImageUpload from '@/components/admin/ImageUpload.vue'
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue'
 import ErrorMessage from '@/components/common/ErrorMessage.vue'
 
@@ -190,6 +207,7 @@ const initialLoading = ref(true)
 const submitting = ref(false)
 const loadError = ref<string | null>(null)
 const submitError = ref<string | null>(null)
+const coverFile = ref<FileInfo | null>(null)
 
 const formData = ref<PostRequest>({
   title: '',
@@ -220,6 +238,11 @@ const loadPost = async () => {
       // 태그 배열을 쉼표로 구분된 문자열로 변환
       const tagString = post.tags.join(', ')
 
+      // 커버 파일 설정
+      if (post.cover_file) {
+        coverFile.value = post.cover_file
+      }
+
       formData.value = {
         title: post.title,
         description: post.description,
@@ -228,7 +251,7 @@ const loadPost = async () => {
         author: post.author,
         publish_status: post.publish_status || 'PUBLISHED',
         tags: tagString,
-        cover_file_id: post.cover_file?.id
+        cover_file_id: post.cover_file?.file_id
       }
     } else {
       loadError.value = '포스트를 찾을 수 없습니다.'

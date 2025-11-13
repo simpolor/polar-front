@@ -41,15 +41,31 @@
 }
 
 .markdown-viewer pre {
-  @apply bg-gray-100 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto my-4;
+  @apply rounded-lg p-4 overflow-x-auto my-4 border border-blue-900 dark:border-blue-900;
+  background-color: #1a1a1a !important; /* 라이트 모드: 어두운 배경 */
+}
+
+.dark .markdown-viewer pre {
+  background-color: #0d1117 !important; /* 다크 모드: GitHub 다크 테마와 동일 */
 }
 
 .markdown-viewer code {
-  @apply bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded text-sm font-mono;
+  @apply bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono text-gray-800 dark:text-gray-200;
 }
 
 .markdown-viewer pre code {
-  @apply bg-transparent p-0;
+  background: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  color: #e6edf3 !important;
+}
+
+/* 코드 블록 내 모든 요소의 배경 완전히 제거 */
+.markdown-viewer pre code *,
+.markdown-viewer pre code span,
+.markdown-viewer pre code .hljs {
+  background: none !important;
+  background-color: transparent !important;
 }
 
 .markdown-viewer img {

@@ -25,7 +25,7 @@
       <!-- 커버 이미지 -->
       <div v-if="post.cover_file" class="mb-8 -mx-4 md:mx-0">
         <img
-          :src="post.cover_file.file_url"
+          :src="post.cover_file.image_url"
           :alt="post.title"
           class="w-full h-64 md:h-96 object-cover rounded-lg"
         />
@@ -123,7 +123,7 @@ const seoKeywords = computed(() => {
   const tags = post.value.tags.join(', ')
   return `${post.value.keywords}, ${tags}`
 })
-const seoImage = computed(() => post.value?.cover_file?.file_url || '')
+const seoImage = computed(() => post.value?.cover_file?.image_url || '')
 const seoAuthor = computed(() => post.value?.author || 'Polar Blog')
 
 useHead({

@@ -38,9 +38,7 @@ export interface ListResponse<T> {
 
 // 파일 정보
 export interface FileInfo {
-  id: number
-  file_name: string
-  file_url: string
-  file_size: number
-  file_type: string
+  file_id: number
+  image_url: string
+  original_file_name: string
 }
