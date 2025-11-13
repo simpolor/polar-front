@@ -1,0 +1,73 @@
+/* Markdown 콘텐츠 스타일 */
+.markdown-viewer {
+  @apply prose dark:prose-invert max-w-none;
+}
+
+.markdown-viewer h1 {
+  @apply text-4xl font-bold mb-4 mt-8;
+}
+
+.markdown-viewer h2 {
+  @apply text-3xl font-bold mb-3 mt-6;
+}
+
+.markdown-viewer h3 {
+  @apply text-2xl font-bold mb-2 mt-5;
+}
+
+.markdown-viewer h4 {
+  @apply text-xl font-bold mb-2 mt-4;
+}
+
+.markdown-viewer p {
+  @apply mb-4 leading-relaxed;
+}
+
+.markdown-viewer a {
+  @apply text-blue-500 hover:text-blue-600 underline;
+}
+
+.markdown-viewer ul,
+.markdown-viewer ol {
+  @apply mb-4 ml-6;
+}
+
+.markdown-viewer li {
+  @apply mb-2;
+}
+
+.markdown-viewer blockquote {
+  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-4;
+}
+
+.markdown-viewer pre {
+  @apply bg-gray-100 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto my-4;
+}
+
+.markdown-viewer code {
+  @apply bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded text-sm font-mono;
+}
+
+.markdown-viewer pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-viewer img {
+  @apply max-w-full h-auto rounded-lg my-4;
+}
+
+.markdown-viewer table {
+  @apply w-full border-collapse my-4;
+}
+
+.markdown-viewer th {
+  @apply border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-100 dark:bg-gray-800 font-bold;
+}
+
+.markdown-viewer td {
+  @apply border border-gray-300 dark:border-gray-600 px-4 py-2;
+}
+
+.markdown-viewer hr {
+  @apply my-8 border-gray-300 dark:border-gray-600;
+}

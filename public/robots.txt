@@ -1,0 +1,11 @@
+# robots.txt for Polar Blog
+
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /login
+
+# Sitemap location (update this with your actual domain)
+# Sitemap: https://yourdomain.com/sitemap.xml
