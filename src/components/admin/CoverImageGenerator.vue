@@ -123,7 +123,7 @@ const splitLines = (
 
   // 마지막 줄 말줄임
   if (lines.length === maxLines) {
-    let last = lines[maxLines - 1]
+    let last = lines[maxLines - 1]!
     while (ctx.measureText(last + '…').width > maxWidth && last.length > 0) {
       last = last.slice(0, -1)
     }

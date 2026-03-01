@@ -50,6 +50,7 @@ export const getPostsByTagId = async (tagId: number, page: number = 1, size: num
   interface RawResponse {
     success: boolean
     content: PostListItem[]
+    timestamp: string
     page: { pageNumber: number; pageSize: number; totalElements: number; totalPages: number; first: boolean; last: boolean }
   }
   const response = await apiClient.get<RawResponse>(`/tags/${tagId}/posts`, {
