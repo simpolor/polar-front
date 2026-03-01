@@ -1,5 +1,14 @@
 <template>
   <div class="space-y-4">
+    <!-- 숨겨진 파일 입력 (항상 존재) -->
+    <input
+      ref="fileInput"
+      type="file"
+      class="hidden"
+      accept="image/*"
+      @change="handleFileChange"
+    />
+
     <!-- 현재 이미지 미리보기 -->
     <div v-if="previewUrl" class="relative inline-block">
       <img
@@ -7,21 +16,34 @@
         :alt="imageAlt"
         class="max-w-full h-48 object-cover rounded-lg border-2 border-gray-300 dark:border-gray-600"
       />
-      <button
-        type="button"
-        @click="handleRemove"
-        class="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors shadow-lg"
-        title="이미지 제거"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <div class="absolute top-2 right-2 flex gap-1">
+        <button
+          type="button"
+          @click="fileInput?.click()"
+          class="p-2 bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors shadow-lg"
+          title="이미지 변경"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          @click="handleRemove"
+          class="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors shadow-lg"
+          title="이미지 제거"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- 업로드 버튼 -->
     <div v-if="!previewUrl">
       <label
+        @click="fileInput?.click()"
         @drop.prevent="handleDrop"
         @dragover.prevent="isDragging = true"
         @dragleave.prevent="isDragging = false"
@@ -29,8 +51,8 @@
         :class="[
           'flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors bg-gray-50 dark:bg-gray-800/50',
           isDragging
-            ? 'border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20'
-            : 'border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400'
+            ? 'border-gray-500 dark:border-gray-400 bg-gray-50 dark:bg-gray-800/20'
+            : 'border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400'
         ]"
       >
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -54,18 +76,11 @@
             PNG, JPG, GIF (MAX. 10MB)
           </p>
         </div>
-        <input
-          ref="fileInput"
-          type="file"
-          class="hidden"
-          accept="image/*"
-          @change="handleFileChange"
-        />
       </label>
     </div>
 
     <!-- 업로드 중 -->
-    <div v-if="uploading" class="flex items-center justify-center gap-2 text-blue-500">
+    <div v-if="uploading" class="flex items-center justify-center gap-2 text-gray-600">
       <LoadingSpinner size="sm" />
       <span class="text-sm">업로드 중...</span>
     </div>

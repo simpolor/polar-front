@@ -30,7 +30,7 @@
         class="px-4 py-2 rounded-lg border transition-colors"
         :class="
           page === currentPage
-            ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600'
+            ? 'bg-gray-800 text-white border-gray-500 hover:bg-gray-900'
             : 'border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'
         "
       >

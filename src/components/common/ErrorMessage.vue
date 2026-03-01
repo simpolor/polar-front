@@ -94,7 +94,7 @@ const alertClass = computed(() => {
     case 'warning':
       return 'bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800'
     case 'info':
-      return 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'
+      return 'bg-gray-50 dark:bg-gray-800/20 border border-gray-300 dark:border-gray-700'
     default:
       return 'bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700'
   }
@@ -107,7 +107,7 @@ const iconClass = computed(() => {
     case 'warning':
       return 'text-yellow-500 dark:text-yellow-400'
     case 'info':
-      return 'text-blue-500 dark:text-blue-400'
+      return 'text-gray-600 dark:text-gray-400'
     default:
       return 'text-gray-500 dark:text-gray-400'
   }
@@ -120,7 +120,7 @@ const titleClass = computed(() => {
     case 'warning':
       return 'text-yellow-800 dark:text-yellow-300'
     case 'info':
-      return 'text-blue-800 dark:text-blue-300'
+      return 'text-gray-700 dark:text-gray-400'
     default:
       return 'text-gray-800 dark:text-gray-300'
   }
@@ -133,7 +133,7 @@ const messageClass = computed(() => {
     case 'warning':
       return 'text-yellow-700 dark:text-yellow-400'
     case 'info':
-      return 'text-blue-700 dark:text-blue-400'
+      return 'text-blue-700 dark:text-gray-400'
     default:
       return 'text-gray-700 dark:text-gray-400'
   }
@@ -146,7 +146,7 @@ const closeButtonClass = computed(() => {
     case 'warning':
       return 'text-yellow-500 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-300'
     case 'info':
-      return 'text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'
+      return 'text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-400'
     default:
       return 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
   }

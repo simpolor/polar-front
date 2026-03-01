@@ -12,12 +12,12 @@
             <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
               전체 포스트
             </h3>
-            <p class="text-3xl font-bold text-blue-500">
+            <p class="text-3xl font-bold text-gray-600">
               {{ totalPosts }}
             </p>
           </div>
-          <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
@@ -52,9 +52,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <router-link
           to="/admin/posts/create"
-          class="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+          class="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800/20 transition-all"
         >
-          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
           <span class="font-medium text-gray-900 dark:text-white">새 포스트 작성</span>
@@ -80,7 +80,7 @@
         </h2>
         <router-link
           to="/admin/posts"
-          class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm"
+          class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-400 text-sm"
         >
           전체보기 →
         </router-link>
@@ -93,7 +93,7 @@
           v-for="post in recentPosts"
           :key="post.id"
           :to="`/admin/posts/${post.id}/edit`"
-          class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+          class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
         >
           <h3 class="font-medium text-gray-900 dark:text-white mb-1">
             {{ post.title }}

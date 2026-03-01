@@ -10,22 +10,21 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        name: 'Home',
-        component: () => import('@/views/Home.vue')
+        redirect: '/posts'
       },
       {
-        path: '/posts',
+        path: 'posts',
         name: 'PostList',
         component: () => import('@/views/PostList.vue')
       },
       {
-        path: '/posts/:id',
+        path: 'posts/:id',
         name: 'PostDetail',
         component: () => import('@/views/PostDetail.vue'),
         props: true
       },
       {
-        path: '/tags/:tagName',
+        path: 'tags/:tagId',
         name: 'TagPosts',
         component: () => import('@/views/TagPosts.vue'),
         props: true

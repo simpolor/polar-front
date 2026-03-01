@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 const colorClass = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50'
+      return 'bg-gray-100 dark:bg-gray-700/30 text-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
     case 'secondary':
       return 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
     case 'success':
@@ -31,7 +31,7 @@ const colorClass = computed(() => {
     case 'warning':
       return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-900/50'
     default:
-      return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50'
+      return 'bg-gray-100 dark:bg-gray-700/30 text-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700/50'
   }
 })
 </script>

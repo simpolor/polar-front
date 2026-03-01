@@ -37,11 +37,11 @@ const size = computed(() => sizeMap[props.size])
 const spinnerClass = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'border-blue-500'
+      return 'border-gray-500'
     case 'lg':
       return 'border-blue-600'
     default:
-      return 'border-blue-500'
+      return 'border-gray-500'
   }
 })
 

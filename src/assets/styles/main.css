@@ -29,7 +29,7 @@ body {
 /* 커스텀 유틸리티 클래스 */
 @layer components {
   .btn-primary {
-    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors;
+    @apply px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors;
   }
 
   .btn-secondary {
@@ -37,7 +37,7 @@ body {
   }
 
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none;
   }
 
   .card {

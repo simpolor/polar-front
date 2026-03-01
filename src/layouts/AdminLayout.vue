@@ -3,8 +3,8 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg">
       <div class="p-6">
-        <router-link to="/" class="text-2xl font-bold text-gray-800 dark:text-white">
-          Simpolor Admin
+        <router-link to="/admin" class="text-2xl font-bold text-gray-800 dark:text-white">
+          Admin
         </router-link>
       </div>
 
@@ -12,7 +12,7 @@
         <router-link
           to="/admin/dashboard"
           class="block px-4 py-2 mb-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-          active-class="bg-blue-500 text-white hover:bg-blue-600"
+          active-class="bg-gray-800 text-white hover:bg-gray-900"
         >
           대시보드
         </router-link>
@@ -24,14 +24,14 @@
           <router-link
             to="/admin/posts"
             class="block px-4 py-2 mb-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-            active-class="bg-blue-500 text-white hover:bg-blue-600"
+            active-class="bg-gray-800 text-white hover:bg-gray-900"
           >
             포스트
           </router-link>
           <router-link
             to="/admin/tags"
             class="block px-4 py-2 mb-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-            active-class="bg-blue-500 text-white hover:bg-blue-600"
+            active-class="bg-gray-800 text-white hover:bg-gray-900"
           >
             태그
           </router-link>
@@ -52,9 +52,9 @@
     <div class="flex-1 flex flex-col">
       <header class="bg-white dark:bg-gray-800 shadow">
         <div class="px-8 py-4 flex items-center justify-between">
-          <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">
+          <router-link to="/admin/dashboard" class="text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
             관리자 페이지
-          </h1>
+          </router-link>
 
           <div class="flex items-center gap-4">
             <span class="text-gray-600 dark:text-gray-400">

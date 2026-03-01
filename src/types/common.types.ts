@@ -36,6 +36,13 @@ export interface ListResponse<T> {
   timestamp: string
 }
 
+// content 배열 응답 (태그 목록 등)
+export interface ContentResponse<T> {
+  success: boolean
+  content: T[]
+  message?: string
+}
+
 // 파일 정보
 export interface FileInfo {
   file_id: number

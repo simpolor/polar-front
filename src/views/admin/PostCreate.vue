@@ -33,7 +33,7 @@
           type="text"
           required
           placeholder="포스트 제목을 입력하세요"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
       </div>
 
@@ -47,21 +47,7 @@
           required
           rows="3"
           placeholder="포스트에 대한 간단한 설명을 입력하세요"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        />
-      </div>
-
-      <!-- 키워드 -->
-      <div class="card">
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          키워드 <span class="text-red-500">*</span>
-        </label>
-        <input
-          v-model="formData.keywords"
-          type="text"
-          required
-          placeholder="SEO 키워드를 입력하세요"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 resize-none"
         />
       </div>
 
@@ -75,7 +61,7 @@
           type="text"
           required
           placeholder="작성자 이름을 입력하세요"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
       </div>
 
@@ -89,9 +75,28 @@
           @update:fileId="formData.cover_file_id = $event"
           image-alt="포스트 커버 이미지"
         />
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-          포스트 목록과 상세 페이지에 표시될 커버 이미지입니다.
-        </p>
+
+        <!-- 자동 생성 구분선 -->
+        <div class="relative my-4">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200 dark:border-gray-700" />
+          </div>
+          <div class="relative flex justify-center text-xs">
+            <span class="px-2 bg-white dark:bg-gray-900 text-gray-400">또는 제목/설명으로 자동 생성</span>
+          </div>
+        </div>
+
+        <CoverImageGenerator
+          :title="formData.title"
+          :description="formData.description"
+          :tags="formData.tags"
+          @generated="handleCoverGenerated"
+        />
+
+        <div class="mt-3 text-sm text-gray-500 dark:text-gray-400 space-y-1">
+          <p>권장 크기: <span class="font-medium text-gray-700 dark:text-gray-300">1200 x 630px</span></p>
+          <p>카카오톡·페이스북·트위터 공유 미리보기 최적 / Google 검색 이미지 미리보기 권장 비율</p>
+        </div>
       </div>
 
       <!-- 본문 -->
@@ -111,7 +116,7 @@
           v-model="formData.tags"
           type="text"
           placeholder="태그를 쉼표 또는 스페이스로 구분하여 입력하세요 (예: JavaScript, Vue, TypeScript)"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
           쉼표(,) 또는 스페이스로 구분하여 여러 태그를 입력할 수 있습니다.
@@ -134,7 +139,7 @@
             @click="formData.publish_status = formData.publish_status === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED'"
             :class="[
               'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-              formData.publish_status === 'PUBLISHED' ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
+              formData.publish_status === 'PUBLISHED' ? 'bg-gray-800' : 'bg-gray-300 dark:bg-gray-600'
             ]"
           >
             <span
@@ -158,7 +163,7 @@
         <button
           type="submit"
           :disabled="loading"
-          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          class="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
           <LoadingSpinner v-if="loading" size="sm" />
           <span>{{ formData.publish_status === 'PUBLISHED' ? '발행하기' : '임시저장' }}</span>
@@ -176,6 +181,7 @@ import type { PostRequest } from '@/types/post.types'
 import type { FileInfo } from '@/types/common.types'
 import MarkdownEditor from '@/components/admin/MarkdownEditor.vue'
 import ImageUpload from '@/components/admin/ImageUpload.vue'
+import CoverImageGenerator from '@/components/admin/CoverImageGenerator.vue'
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue'
 import ErrorMessage from '@/components/common/ErrorMessage.vue'
 
@@ -191,7 +197,6 @@ const formData = ref<PostRequest>({
   title: '',
   description: '',
   content: '',
-  keywords: '',
   author: '',
   publish_status: 'DRAFT',
   tags: '',
@@ -199,6 +204,11 @@ const formData = ref<PostRequest>({
 })
 
 // Methods
+
+const handleCoverGenerated = (fileInfo: FileInfo) => {
+  coverFile.value = fileInfo
+  formData.value.cover_file_id = fileInfo.file_id
+}
 
 const handleSubmit = async () => {
   if (loading.value) return
@@ -211,11 +221,6 @@ const handleSubmit = async () => {
 
   if (!formData.value.description.trim()) {
     error.value = '설명을 입력해주세요.'
-    return
-  }
-
-  if (!formData.value.keywords.trim()) {
-    error.value = '키워드를 입력해주세요.'
     return
   }
 

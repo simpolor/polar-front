@@ -4,7 +4,7 @@
       <!-- 로고 / 타이틀 -->
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          Simpolor Blog
+          단순하고 색있게
         </h1>
         <p class="text-gray-600 dark:text-gray-400">
           관리자 로그인
@@ -68,15 +68,15 @@
       <div class="mt-6 text-center">
         <router-link
           to="/"
-          class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm"
+          class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-400 text-sm"
         >
           ← 홈으로 돌아가기
         </router-link>
       </div>
 
       <!-- 테스트 계정 안내 (개발 환경에서만) -->
-      <div v-if="isDevelopment" class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-        <p class="text-xs text-blue-800 dark:text-blue-300 text-center">
+      <div v-if="isDevelopment" class="mt-6 p-4 bg-gray-50 dark:bg-gray-800/20 rounded-lg border border-gray-300 dark:border-gray-700">
+        <p class="text-xs text-gray-700 dark:text-gray-400 text-center">
           테스트 계정: admin / test123!@#
         </p>
       </div>

@@ -3,13 +3,27 @@ import type {
   PostListItem,
   PostDetail,
   PostRequest,
-  Tag
+  Tag,
+  TagPublic
 } from '@/types/post.types'
 import type {
   PageResponse,
   ApiResponse,
-  ListResponse
+  ListResponse,
+  ContentResponse,
+  PageInfo
 } from '@/types/common.types'
+
+// camelCase 페이지 응답 → 내부 PageInfo 변환
+const mapPageInfo = (camel: any): PageInfo => ({
+  page_number: camel.pageNumber,
+  page_size: camel.pageSize,
+  total_elements: camel.totalElements,
+  total_pages: camel.totalPages,
+  first: camel.first,
+  last: camel.last,
+  empty: camel.totalElements === 0
+})
 
 // 포스트 목록 조회 (페이징)
 export const getPostList = async (page: number = 1, size: number = 10): Promise<PageResponse<PostListItem>> => {
@@ -31,11 +45,26 @@ export const getRelatedPosts = async (postId: number): Promise<ListResponse<Post
   return response.data
 }
 
-// 태그별 포스트 조회
-export const getPostsByTag = async (tagName: string, page: number = 1, size: number = 10): Promise<PageResponse<PostListItem>> => {
-  const response = await apiClient.get<PageResponse<PostListItem>>(`/tags/${tagName}/posts`, {
+// 태그별 포스트 조회 (tagId 기반)
+export const getPostsByTagId = async (tagId: number, page: number = 1, size: number = 10): Promise<PageResponse<PostListItem>> => {
+  interface RawResponse {
+    success: boolean
+    content: PostListItem[]
+    page: { pageNumber: number; pageSize: number; totalElements: number; totalPages: number; first: boolean; last: boolean }
+  }
+  const response = await apiClient.get<RawResponse>(`/tags/${tagId}/posts`, {
     params: { page, size }
   })
+  const raw = response.data
+  return {
+    ...raw,
+    page: mapPageInfo(raw.page)
+  }
+}
+
+// 공개 태그 목록 조회 (GET /tags)
+export const getPublicTagList = async (): Promise<ContentResponse<TagPublic>> => {
+  const response = await apiClient.get<ContentResponse<TagPublic>>('/tags')
   return response.data
 }
 

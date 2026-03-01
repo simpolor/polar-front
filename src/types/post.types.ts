@@ -19,7 +19,6 @@ export interface PostDetail {
   title: string
   content: string
   description: string
-  keywords: string
   author: string
   views: number
   tags: string[]
@@ -35,7 +34,6 @@ export interface PostRequest {
   title: string
   content: string
   description: string
-  keywords: string
   author: string
   publish_status: 'DRAFT' | 'PUBLISHED'
   tags: string  // 쉼표로 구분된 태그 이름 문자열
@@ -44,9 +42,15 @@ export interface PostRequest {
   del_file_ids?: number[]
 }
 
-// 태그
+// 태그 (관리자용)
 export interface Tag {
   id: number
   tag_name: string
   post_count?: number
+}
+
+// 태그 (공개용 - GET /tags)
+export interface TagPublic {
+  id: number
+  name: string
 }
