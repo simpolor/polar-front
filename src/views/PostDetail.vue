@@ -126,14 +126,14 @@ const loading = computed(() => postStore.loading)
 const error = computed(() => postStore.error)
 
 // SEO
-const seoTitle = computed(() => post.value ? `${post.value.title} - 단순하고 색있게` : '단순하고 색있게')
+const seoTitle = computed(() => post.value ? `${post.value.title} - 단순하게 색있게` : '단순하게 색있게')
 const seoDescription = computed(() => post.value?.description || '복잡한 개발 지식을 단순하게. 코드와 경험을 색있게 기록합니다.')
 const seoKeywords = computed(() => {
   if (!post.value) return '개발, 프로그래밍, 블로그'
   return post.value.tags.join(', ')
 })
 const seoImage = computed(() => post.value?.cover_file?.image_url)
-const seoAuthor = computed(() => post.value?.author || '단순하고 색있게')
+const seoAuthor = computed(() => post.value?.author || '단순하게 색있게')
 const seoUrl = computed(() => typeof window !== 'undefined' ? `${window.location.origin}${route.fullPath}` : '')
 const seoPublishedTime = computed(() => post.value?.created_at || '')
 const seoModifiedTime = computed(() => post.value?.updated_at || post.value?.created_at || '')
@@ -147,7 +147,7 @@ const jsonLd = computed(() => {
     description: post.value.description,
     ...(post.value.cover_file?.image_url && { image: post.value.cover_file.image_url }),
     author: { '@type': 'Person', name: post.value.author },
-    publisher: { '@type': 'Organization', name: '단순하고 색있게' },
+    publisher: { '@type': 'Organization', name: '단순하게 색있게' },
     datePublished: post.value.created_at,
     dateModified: post.value.updated_at || post.value.created_at,
     keywords: post.value.tags.join(', '),
@@ -169,7 +169,7 @@ useHead({
     { property: 'og:type', content: 'article' },
     { property: 'og:url', content: seoUrl },
     { property: 'og:image', content: seoImage },
-    { property: 'og:site_name', content: '단순하고 색있게' },
+    { property: 'og:site_name', content: '단순하게 색있게' },
     { property: 'og:locale', content: 'ko_KR' },
     { property: 'article:author', content: seoAuthor },
     { property: 'article:published_time', content: seoPublishedTime },

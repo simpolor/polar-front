@@ -22,12 +22,12 @@ export const usePostStore = defineStore('post', () => {
   const error = ref<string | null>(null)
 
   // Actions
-  const fetchPosts = async (page: number = 1, size: number = 10) => {
+  const fetchPosts = async (page: number = 1, size: number = 10, tagId?: number) => {
     loading.value = true
     error.value = null
 
     try {
-      const response = await getPostList(page, size)
+      const response = await getPostList(page, size, tagId)
       posts.value = response.content
       pageInfo.value = response.page
     } catch (err: any) {

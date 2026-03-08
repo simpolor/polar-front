@@ -1,60 +1,82 @@
 <template>
-  <div class="flex gap-8 max-w-6xl mx-auto">
-    <!-- 메인 콘텐츠 -->
-    <div class="flex-1 min-w-0">
-      <!-- 헤더 -->
-      <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          전체 포스트
-        </h1>
-        <p class="text-gray-600 dark:text-gray-400">
-          {{ totalElements }}개의 포스트
-        </p>
-      </div>
-
-      <!-- 로딩 -->
-      <LoadingSpinner v-if="loading" message="포스트를 불러오는 중..." />
-
-      <!-- 에러 -->
-      <ErrorMessage
-        v-else-if="error"
-        :message="error"
-        type="error"
-        :retryable="true"
-        @retry="loadPosts"
-        @dismiss="clearError"
-      />
-
-      <!-- 포스트 목록 -->
-      <div v-else-if="posts.length" class="space-y-6">
-        <PostCard v-for="post in posts" :key="post.id" :post="post" />
-
-        <!-- 페이지네이션 -->
-        <Pagination
-          :current-page="currentPage"
-          :total-pages="totalPages"
-          :total-elements="totalElements"
-          :page-size="pageSize"
-          :is-first-page="isFirstPage"
-          :is-last-page="isLastPage"
-          :visible-pages="visiblePages"
-          @page-change="handlePageChange"
-        />
-      </div>
-
-      <!-- 빈 상태 -->
-      <div v-else class="text-center py-12">
-        <svg class="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-        <p class="text-xl text-gray-600 dark:text-gray-400">
-          아직 포스트가 없습니다.
-        </p>
-      </div>
+  <div class="max-w-4xl mx-auto">
+    <!-- 헤더 -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        전체 포스트
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        {{ totalElements }}개의 포스트
+      </p>
     </div>
 
-    <!-- 카테고리 사이드바 -->
-    <CategorySidebar />
+    <!-- 태그 필터 -->
+    <div v-if="tags.length" class="flex flex-wrap gap-2 mb-8">
+      <button
+        @click="handleTagFilter(null)"
+        :class="[
+          'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
+          !activeTagId
+            ? 'bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900'
+            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+        ]"
+      >
+        전체
+      </button>
+      <button
+        v-for="tag in tags"
+        :key="tag.id"
+        @click="handleTagFilter(tag.id)"
+        :class="[
+          'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
+          activeTagId === tag.id
+            ? 'bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900'
+            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+        ]"
+      >
+        #{{ tag.name }}
+      </button>
+    </div>
+
+    <!-- 로딩 -->
+    <LoadingSpinner v-if="loading" message="포스트를 불러오는 중..." />
+
+    <!-- 에러 -->
+    <ErrorMessage
+      v-else-if="error"
+      :message="error"
+      type="error"
+      :retryable="true"
+      @retry="loadPosts"
+      @dismiss="clearError"
+    />
+
+    <!-- 포스트 목록 -->
+    <div v-else-if="posts.length" class="space-y-6">
+      <PostCard v-for="post in posts" :key="post.id" :post="post" />
+
+      <!-- 페이지네이션 -->
+      <Pagination
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        :total-elements="totalElements"
+        :page-size="pageSize"
+        :is-first-page="isFirstPage"
+        :is-last-page="isLastPage"
+        :visible-pages="visiblePages"
+        @page-change="handlePageChange"
+      />
+    </div>
+
+    <!-- 빈 상태 -->
+    <div v-else class="text-center py-16">
+      <svg class="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        아직 포스트가 없습니다.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -68,7 +90,6 @@ import PostCard from '@/components/post/PostCard.vue'
 import Pagination from '@/components/common/Pagination.vue'
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue'
 import ErrorMessage from '@/components/common/ErrorMessage.vue'
-import CategorySidebar from '@/components/common/CategorySidebar.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -79,12 +100,12 @@ const seoUrl = computed(() => typeof window !== 'undefined' ? `${window.location
 
 // SEO
 useHead({
-  title: '전체 포스트 - 단순하고 색있게',
+  title: '전체 포스트 - 단순하게 색있게',
   link: [{ rel: 'canonical', href: seoUrl }],
   meta: [
     {
       name: 'description',
-      content: '단순하고 색있게의 모든 포스트를 확인하세요. 개발 관련 다양한 주제의 글들을 찾아볼 수 있습니다.'
+      content: '단순하게 색있게의 모든 포스트를 확인하세요. 개발 관련 다양한 주제의 글들을 찾아볼 수 있습니다.'
     },
     {
       name: 'keywords',
@@ -92,11 +113,11 @@ useHead({
     },
     {
       property: 'og:title',
-      content: '전체 포스트 - 단순하고 색있게'
+      content: '전체 포스트 - 단순하게 색있게'
     },
     {
       property: 'og:description',
-      content: '단순하고 색있게의 모든 포스트를 확인하세요.'
+      content: '단순하게 색있게의 모든 포스트를 확인하세요.'
     },
     {
       property: 'og:type',
@@ -104,11 +125,11 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: '전체 포스트 - 단순하고 색있게'
+      content: '전체 포스트 - 단순하게 색있게'
     },
     {
       name: 'twitter:description',
-      content: '단순하고 색있게의 모든 포스트를 확인하세요.'
+      content: '단순하게 색있게의 모든 포스트를 확인하세요.'
     }
   ]
 })
@@ -118,6 +139,11 @@ const posts = computed(() => postStore.posts.filter(post => !post.is_deleted))
 const loading = computed(() => postStore.loading)
 const error = computed(() => postStore.error)
 const pageInfo = computed(() => postStore.pageInfo)
+const tags = computed(() => tagStore.tags)
+const activeTagId = computed(() => {
+  const id = Number(route.query.tagId)
+  return id || null
+})
 
 const totalElements = computed(() => pageInfo.value?.total_elements ?? 0)
 const totalPages = computed(() => pageInfo.value?.total_pages ?? 0)
@@ -161,14 +187,23 @@ const visiblePages = computed(() => {
 const loadPosts = async () => {
   try {
     const page = Number(route.query.page) || 1
-    await postStore.fetchPosts(page, 10)
+    const tagId = Number(route.query.tagId) || undefined
+    await postStore.fetchPosts(page, 10, tagId)
   } catch (err) {
     console.error('Failed to load posts:', err)
   }
 }
 
+const handleTagFilter = (tagId: number | null) => {
+  const query: any = { page: '1' }
+  if (tagId) query.tagId = tagId.toString()
+  router.push({ query })
+}
+
 const handlePageChange = (page: number) => {
-  router.push({ query: { page: page.toString() } })
+  const query: any = { page: page.toString() }
+  if (activeTagId.value) query.tagId = activeTagId.value.toString()
+  router.push({ query })
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
@@ -183,7 +218,7 @@ onMounted(() => {
 })
 
 // Watch route changes
-watch(() => route.query.page, () => {
+watch(() => [route.query.page, route.query.tagId], () => {
   loadPosts()
 })
 </script>

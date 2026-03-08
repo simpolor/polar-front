@@ -10,7 +10,7 @@
           <!-- 상단: 브랜딩 -->
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 6px; height: 28px; background: #6366f1; border-radius: 3px;"></div>
-            <span style="color: #94a3b8; font-size: 22px; font-weight: 500; letter-spacing: 0.08em;">단순하고 색있게</span>
+            <span style="color: #94a3b8; font-size: 22px; font-weight: 500; letter-spacing: 0.08em;">단순하게 색있게</span>
           </div>
           <!-- 중앙: 제목·설명 -->
           <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 0 32px;">
@@ -180,7 +180,7 @@ const generate = async () => {
     // 브랜딩 텍스트
     ctx.font = "500 22px 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif"
     ctx.fillStyle = '#94a3b8'
-    ctx.fillText('단순하고 색있게', PAD + 18, PAD + 21)
+    ctx.fillText('단순하게 색있게', PAD + 18, PAD + 21)
 
     // 제목 (최대 3줄)
     ctx.font = "700 62px 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif"

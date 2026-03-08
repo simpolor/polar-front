@@ -35,6 +35,13 @@
           >
             태그
           </router-link>
+          <router-link
+            to="/admin/bookmarks"
+            class="block px-4 py-2 mb-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            active-class="bg-gray-800 text-white hover:bg-gray-900"
+          >
+            북마크
+          </router-link>
         </div>
 
         <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">

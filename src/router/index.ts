@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
         name: 'TagPosts',
         component: () => import('@/views/TagPosts.vue'),
         props: true
+      },
+      {
+        path: 'bookmarks',
+        name: 'BookmarkList',
+        component: () => import('@/views/BookmarkList.vue')
       }
     ]
   },
@@ -74,6 +79,22 @@ const routes: RouteRecordRaw[] = [
         path: 'tags',
         name: 'AdminTags',
         component: () => import('@/views/admin/TagManagement.vue')
+      },
+      {
+        path: 'bookmarks',
+        name: 'AdminBookmarks',
+        component: () => import('@/views/admin/BookmarkManagement.vue')
+      },
+      {
+        path: 'bookmarks/create',
+        name: 'AdminBookmarkCreate',
+        component: () => import('@/views/admin/BookmarkCreate.vue')
+      },
+      {
+        path: 'bookmarks/:id/edit',
+        name: 'AdminBookmarkEdit',
+        component: () => import('@/views/admin/BookmarkEdit.vue'),
+        props: true
       }
     ]
   },

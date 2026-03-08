@@ -4,19 +4,19 @@
     class="card rounded-none border-b-2 border-gray-200 dark:border-gray-700 hover:border-b-gray-500 transition-all duration-200 flex gap-6 items-start"
   >
     <!-- 텍스트 영역 -->
-    <div class="flex-1 min-w-0">
+    <div class="flex-1 min-w-0 flex flex-col gap-3">
       <!-- 제목 -->
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-gray-600 dark:hover:text-gray-400 transition-colors">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors">
         {{ post.title }}
       </h3>
 
       <!-- 설명 -->
-      <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 text-sm">
+      <p v-if="post.description" class="text-gray-600 dark:text-gray-400 line-clamp-2 text-sm">
         {{ post.description }}
       </p>
 
       <!-- 태그 -->
-      <div class="flex flex-wrap gap-2 mb-3">
+      <div v-if="post.tags?.length" class="flex flex-wrap gap-2">
         <span
           v-for="tag in post.tags"
           :key="tag"

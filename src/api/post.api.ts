@@ -10,26 +10,15 @@ import type {
   PageResponse,
   ApiResponse,
   ListResponse,
-  ContentResponse,
-  PageInfo
+  ContentResponse
 } from '@/types/common.types'
 
-// camelCase 페이지 응답 → 내부 PageInfo 변환
-const mapPageInfo = (camel: any): PageInfo => ({
-  page_number: camel.pageNumber,
-  page_size: camel.pageSize,
-  total_elements: camel.totalElements,
-  total_pages: camel.totalPages,
-  first: camel.first,
-  last: camel.last,
-  empty: camel.totalElements === 0
-})
 
 // 포스트 목록 조회 (페이징)
-export const getPostList = async (page: number = 1, size: number = 10): Promise<PageResponse<PostListItem>> => {
-  const response = await apiClient.get<PageResponse<PostListItem>>('/posts', {
-    params: { page, size }
-  })
+export const getPostList = async (page: number = 1, size: number = 10, tagId?: number): Promise<PageResponse<PostListItem>> => {
+  const params: any = { page, size }
+  if (tagId) params.tagId = tagId
+  const response = await apiClient.get<PageResponse<PostListItem>>('/posts', { params })
   return response.data
 }
 
@@ -47,25 +36,16 @@ export const getRelatedPosts = async (postId: number): Promise<ListResponse<Post
 
 // 태그별 포스트 조회 (tagId 기반)
 export const getPostsByTagId = async (tagId: number, page: number = 1, size: number = 10): Promise<PageResponse<PostListItem>> => {
-  interface RawResponse {
-    success: boolean
-    content: PostListItem[]
-    timestamp: string
-    page: { pageNumber: number; pageSize: number; totalElements: number; totalPages: number; first: boolean; last: boolean }
-  }
-  const response = await apiClient.get<RawResponse>(`/tags/${tagId}/posts`, {
-    params: { page, size }
+  const response = await apiClient.get<PageResponse<PostListItem>>('/posts', {
+    params: { page, size, tagId }
   })
-  const raw = response.data
-  return {
-    ...raw,
-    page: mapPageInfo(raw.page)
-  }
+  return response.data
 }
 
 // 공개 태그 목록 조회 (GET /tags)
-export const getPublicTagList = async (): Promise<ContentResponse<TagPublic>> => {
-  const response = await apiClient.get<ContentResponse<TagPublic>>('/tags')
+export const getPublicTagList = async (type?: 'POST' | 'BOOKMARK'): Promise<ContentResponse<TagPublic>> => {
+  const params = type ? { type } : {}
+  const response = await apiClient.get<ContentResponse<TagPublic>>('/tags', { params })
   return response.data
 }
 
